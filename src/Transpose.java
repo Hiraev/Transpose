@@ -7,15 +7,17 @@ public final class Transpose {
     private Transpose() {
     }
 
-    //    public static String[][] transpose(final String[] lines, final int length, final boolean trim){
-//        return transpose(lines, 3, true);
-//    }
-    public static String[][] transpose(final ArrayList<String> lines, final int length, final boolean trim) {
+    public static String[][] transpose(final ArrayList<String> lines,
+                                       final int length,
+                                       final boolean trim,
+                                       final boolean right) {
         String[][] stringMatrix;
         ArrayList<ArrayList<String>> matrix = new ArrayList<>();
+        //Если выравнивание справа, то ставим минус, он добавится в формат строки
+        String isRight = right ? "" : "-";
         //Обработка текста и добавление в список
-        int maxLineWidth = 0;
-        int maxLineHeight = 0;
+        int maxLineWidth = 0; //Переменный необходимые для определения размера массива
+        int maxLineHeight = 0; //Хранят максимальное число строк и максимальное число слов в строках
         for (String line : lines) {
             int currentMaxLineHeight = 0;
             final List<String> list = Arrays.stream(line.split(" "))
@@ -23,17 +25,18 @@ public final class Transpose {
                     .collect(Collectors.toList());
             ArrayList<String> currentList = new ArrayList<>();
             for (String word : list) {
-                // Нужно проверить меньше ли длина слова параметра length
-                // Нужно посмотреть в каких случаях не нужно обрезать слово
-                if (word.length() > length) word = word.substring(0, length);
+                // Если trim = true и слово длиннее ограничения, то мы его обрезаем
+                if (trim && word.length() > length || word.length() > length) word = word.substring(0, length);
+                // Дополняем строку пробелами
+                if (word.length() < length) word = String.format("%" + isRight + length + "s", word);
                 currentList.add(word);
                 currentMaxLineHeight++;
             }
-            if (currentMaxLineHeight > maxLineWidth) maxLineWidth = currentMaxLineHeight;
+            if (currentMaxLineHeight > maxLineHeight) maxLineHeight = currentMaxLineHeight;
             matrix.add(currentList);
-            maxLineHeight++;
+            maxLineWidth++;
         }
-        stringMatrix = new String[maxLineWidth][maxLineHeight];
+        stringMatrix = new String[maxLineHeight][maxLineWidth];
         int i = 0;
         for (ArrayList<String> outerList : matrix) {
             int j = 0;

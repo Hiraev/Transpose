@@ -1,6 +1,7 @@
-public final class TFileWriter implements TWriter{
+public final class TFileWriter implements TWriter {
+
     @Override
-    public void write() {
+    public void write(String[][] stringMatrix) {
 
     }
 }
