@@ -1,3 +1,3 @@
 public interface TWriter {
-    void write(String[][] stringMatrix);
+    void write(String[] lines);
 }
