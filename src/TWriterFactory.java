@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-
 public class TWriterFactory {
 
         private static TWriter instance;
