@@ -1,13 +1,13 @@
 public class TWriterFactory {
 
-        private static TWriter instance;
+    private static TWriter instance;
 
-        public static TWriter getInstance(String fileName) {
-            if (instance == null) {
-                if (fileName == null) instance = new TCommandLineWriter();
-                else instance = new TFileWriter(fileName);
-                return instance;
-            }
+    public static TWriter getInstance(String fileName) {
+        if (instance == null) {
+            if (fileName == null) instance = new TCommandLineWriter();
+            else instance = new TFileWriter(fileName);
             return instance;
         }
+        return instance;
+    }
 }
