@@ -26,4 +26,4 @@ ___
 
 === UML - диаграмма некоторых классов и интерфесов
 
-image:files/UML-Task2.png[width="580"]
+image:files/UML-Task2.png[width="980"]
