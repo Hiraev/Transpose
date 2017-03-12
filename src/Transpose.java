@@ -62,7 +62,7 @@ public final class Transpose {
             for (String word : currentLines) {
                 if (word != null) {
                     stringBuilder.append(word);
-                    if (j < currentLines.length - 1) stringBuilder.append(" ");
+                    if (j < currentLines.length - 1 && i < currentLines.length - 1) stringBuilder.append(" ");
                 }
                 j++;
             }
