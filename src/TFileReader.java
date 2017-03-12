@@ -10,10 +10,10 @@ public final class TFileReader implements TReader {
         final File file = new File(fileName);
         if (!file.isFile()) throw new FileNotFoundException("Файл с таким именем не обнаружен!");
         this.file = file;
-        this.read();
     }
 
-    private void read() {
+    @Override
+    public void read() {
         final BufferedReader reader;
         String str;
         try {

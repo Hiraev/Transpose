@@ -6,10 +6,11 @@ public final class TCommandLineReader implements TReader {
 
     TCommandLineReader() {
         lines = new ArrayList<>();
-        this.read();
     }
+
     //Считываем строки из консоли. При печати пустой строки прекращаем считывание.
-    private void read() {
+    @Override
+    public void read() {
         final Scanner scanner = new Scanner(System.in);
         String str;
         while (!(str = scanner.nextLine()).isEmpty()) {
