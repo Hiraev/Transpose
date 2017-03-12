@@ -7,14 +7,14 @@ public final class Transpose {
     private Transpose() {
     }
 
-    public static String[][] transpose(final ArrayList<String> lines,
-                                       final int length,
-                                       final boolean trim,
-                                       final boolean right) {
+    public static String[] transpose(final ArrayList<String> lines,
+                                     final int length,
+                                     final boolean trim,
+                                     final boolean right) {
         String[][] stringMatrix;
         ArrayList<ArrayList<String>> matrix = new ArrayList<>();
         //Если выравнивание справа, то ставим минус, он добавится в формат строки
-        String isRight = right ? "" : "-";
+        final String isRight = right ? "" : "-";
         //Обработка текста и добавление в список
         int maxLineWidth = 0; //Переменный необходимые для определения размера массива
         int maxLineHeight = 0; //Хранят максимальное число строк и максимальное число слов в строках
@@ -36,6 +36,8 @@ public final class Transpose {
             matrix.add(currentList);
             maxLineWidth++;
         }
+        //Двумерная матрица, размеры которой равны, ширина - кол-во строк входном файле
+        //высота - длина самое длинной строки.
         stringMatrix = new String[maxLineHeight][maxLineWidth];
         int i = 0;
         for (ArrayList<String> outerList : matrix) {
@@ -46,6 +48,27 @@ public final class Transpose {
             }
             i++;
         }
-        return stringMatrix;
+        return toStringArray(stringMatrix, maxLineHeight);
+    }
+
+    //Метод преобразует матрицу строк в массив строк, исключая строки равные null
+    private static String[] toStringArray(String[][] stringMatrix, int maxLineHeight) {
+        String[] lines;
+        lines = new String[maxLineHeight];
+        int i = 0;
+        for (String[] currentLines : stringMatrix) {
+            int j = 0; // Чтобы определить является слово в строке последним
+            StringBuilder stringBuilder = new StringBuilder();
+            for (String word : currentLines) {
+                if (word != null) {
+                    stringBuilder.append(word);
+                    if (j < currentLines.length - 1) stringBuilder.append(" ");
+                }
+                j++;
+            }
+            lines[i] = stringBuilder.toString();
+            i++;
+        }
+        return lines;
     }
 }
