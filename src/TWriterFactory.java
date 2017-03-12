@@ -7,7 +7,7 @@ public class TWriterFactory {
         public static TWriter getInstance(String fileName) {
             if (instance == null) {
                 if (fileName == null) instance = new TCommandLineWriter();
-                else instance = new TFileWriter();
+                else instance = new TFileWriter(fileName);
                 return instance;
             }
             return instance;
