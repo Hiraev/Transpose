@@ -9,10 +9,10 @@ public final class TFileWriter implements TWriter {
 
     static {
         dir = new File("output");
+        dir.mkdir();
     }
 
     TFileWriter(String fileName) {
-        System.out.println(dir.mkdir());
         file = new File("output/" + fileName);
     }
 
