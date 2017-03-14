@@ -8,21 +8,15 @@ public final class TFileReader implements TReader {
     TFileReader(final String fileName) throws FileNotFoundException {
         lines = new ArrayList<>();
         final File file = new File(fileName);
+        //Необходимо исправить
         if (!file.isFile()) throw new FileNotFoundException("Файл с таким именем не обнаружен!");
         this.file = file;
     }
 
     @Override
-    public void read() {
-        final BufferedReader reader;
-        String str;
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            while ((str = reader.readLine()) != null) {
-                if (!str.isEmpty()) lines.add(str);
-            }
-        } catch (IOException e) {
-        }
+    public void read() throws IOException {
+        final BufferedReader reader = new BufferedReader(new FileReader(file));
+        reader.lines().forEachOrdered(lines::add);
     }
 
     @Override
