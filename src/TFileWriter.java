@@ -16,19 +16,15 @@ public final class TFileWriter implements TWriter {
         file = new File("output/" + fileName);
     }
 
-    @Override
-    public void write(String[] lines) {
-        try {
-            final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-            int i = 0;
-            for (String line : lines) {
-                bufferedWriter.write(line);
-                i++;
-                if (i < lines.length) bufferedWriter.newLine();
-            }
-            bufferedWriter.close();
-        } catch (IOException e) {
-            System.out.println("Ошибочка");
+    @Override //Может быть FileNotFoundException (No such file or directory)
+    public void write(String[] lines) throws IOException {
+        final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+        int i = 0;
+        for (String line : lines) {
+            bufferedWriter.write(line);
+            i++;
+            if (i < lines.length) bufferedWriter.newLine();
         }
+        bufferedWriter.close();
     }
 }
