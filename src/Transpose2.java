@@ -19,16 +19,16 @@ public final class Transpose2 {
 
         lines.stream().map(e -> (Arrays.stream(e.split(" ")))
                 .filter(s -> !s.isEmpty())
-                .map(s -> (trim & s.length() > length) ? s.substring(0, length - 1) : s)
+                .map(s -> (trim & s.length() > length) ? s.substring(0, length) : s)
                 .map(s -> (s.length() < length) ? String.format("%" + isRight + length + "s", s) : s)
                 .peek(s -> {
                     i.getAndIncrement();
                     if (!map.containsKey(i.get())) map.put(i.get(), "");
-                    map.put(i.get(), map.get(i.get()) + " " + (s));
+                    //Если добавляемая нами строка первая, то не ставим перед ней пробел, иначе ставим
+                    map.put(i.get(), map.get(i.get()) + ((map.get(i.get()).isEmpty()) ? s : " " + s));
                 })
                 .collect(Collectors.joining())
-        ).peek(s -> i.set(0))
-                .forEach(e -> System.out.print(""));
+        ).forEach(s -> i.set(0));
 
         return map.values().toArray(new String[map.size()]);
     }
