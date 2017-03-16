@@ -1,26 +1,32 @@
+import javax.annotation.Nonnull;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public final class TFileReader implements TReader {
     private final File file;
-    private ArrayList<String> lines;
+    private final List<String> lines;
+    private boolean isRead;
 
-    TFileReader(final String fileName) throws FileNotFoundException {
+    TFileReader(@Nonnull final File file) {
         lines = new ArrayList<>();
-        final File file = new File(fileName);
-        //Необходимо исправить
-        if (!file.isFile()) throw new FileNotFoundException("Файл с таким именем не обнаружен!");
+        isRead = false;
         this.file = file;
     }
 
     @Override
     public void read() throws IOException {
-        final BufferedReader reader = new BufferedReader(new FileReader(file));
-        reader.lines().forEachOrdered(lines::add);
+        if (!isRead) { //Избегаем повторного чтение
+            final BufferedReader reader = new BufferedReader(new FileReader(file));
+            reader.lines().forEachOrdered(lines::add);
+            isRead = true;
+        }
     }
 
     @Override
-    public ArrayList<String> getLines() {
+    @Nonnull
+    public List<String> getLines() throws UnsupportedOperationException {
+        if (!isRead) throw new UnsupportedOperationException("Не обнаружен вызов метода read");
         return lines;
     }
 }

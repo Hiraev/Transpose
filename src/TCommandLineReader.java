@@ -1,25 +1,33 @@
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public final class TCommandLineReader implements TReader {
-    private ArrayList<String> lines;
+    private List<String> lines;
+    private boolean isRead;
 
-    TCommandLineReader() {
+    {
         lines = new ArrayList<>();
     }
 
     //Считываем строки из консоли. При печати пустой строки прекращаем считывание.
     @Override
     public void read() {
-        final Scanner scanner = new Scanner(System.in);
-        String str;
-        while (!(str = scanner.nextLine()).isEmpty()) {
-            lines.add(str);
+        if (!isRead) {
+            final Scanner scanner = new Scanner(System.in);
+            String str;
+            while (!(str = scanner.nextLine()).isEmpty()) {
+                lines.add(str);
+            }
+            isRead = true;
         }
     }
 
     @Override
-    public ArrayList<String> getLines() {
+    @Nonnull
+    public List<String> getLines() throws UnsupportedOperationException {
+        if (!isRead) throw new UnsupportedOperationException("Не обнаружен вызов метода read");
         return lines;
     }
 }

@@ -1,12 +1,12 @@
-import java.io.FileNotFoundException;
+import java.io.File;
 
 public final class TReaderFactory {
     private static TReader instance;
 
-    public static TReader getInstance(String fileName) throws FileNotFoundException{
+    public static TReader getInstance(final File file) {
         if (instance == null) {
-            if (fileName == null) instance = new TCommandLineReader();
-            else instance = new TFileReader(fileName);
+            if (file == null) instance = new TCommandLineReader();
+            else instance = new TFileReader(file);
             return instance;
         }
         return instance;
