@@ -18,7 +18,7 @@ public final class TFileReader implements TReader {
     public void read() throws IOException {
         if (!isRead) { //Избегаем повторного чтение
             final BufferedReader reader = new BufferedReader(new FileReader(file));
-            reader.lines().forEachOrdered(lines::add);
+            reader.lines().filter(s -> !s.isEmpty()).forEachOrdered(lines::add);
             isRead = true;
         }
     }
