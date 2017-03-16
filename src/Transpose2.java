@@ -1,3 +1,4 @@
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ public final class Transpose2 {
     private Transpose2() {
     }
 
-    public static String[] transpose(final List<String> lines,
+    public static String[] transpose(@Nonnull final List<String> lines,
                                      final int length,
                                      final boolean trim,
                                      final boolean right) {
