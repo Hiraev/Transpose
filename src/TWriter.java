@@ -1,5 +1,6 @@
+import javax.annotation.Nonnull;
 import java.io.IOException;
 
 public interface TWriter {
-    void write(String[] lines) throws IOException;
+    void write(@Nonnull String[] lines) throws IOException;
 }
