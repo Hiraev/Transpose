@@ -1,3 +1,4 @@
+import javax.annotation.Nonnull;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -5,19 +6,13 @@ import java.io.IOException;
 
 public final class TFileWriter implements TWriter {
     private final File file;
-    private final static File dir;
 
-    static {
-        dir = new File("output");
-        dir.mkdir();
-    }
-
-    TFileWriter(String fileName) {
-        file = new File("output/" + fileName);
+    TFileWriter(@Nonnull File file) {
+        this.file = file;
     }
 
     @Override //Может быть FileNotFoundException (No such file or directory)
-    public void write(String[] lines) throws IOException {
+    public void write(@Nonnull String[] lines) throws IOException {
         final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
         int i = 0;
         for (String line : lines) {
