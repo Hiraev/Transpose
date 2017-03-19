@@ -14,6 +14,11 @@ public final class TCommandLineReader implements TReader {
     //Считываем строки из консоли. При печати пустой строки прекращаем считывание.
     @Override
     public void read() {
+        System.out.println(
+                "+------------------------------------------------------------+\n" +
+                "| Введите строки. После ввода каждой строки нажимайте Enter. |\n" +
+                "| Для завершения ввода нажмите Enter два раза подряд.        |\n" +
+                "+------------------------------------------------------------+");
         if (!isRead) {
             final Scanner scanner = new Scanner(System.in);
             String str;
