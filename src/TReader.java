@@ -4,5 +4,7 @@ import java.util.List;
 
 public interface TReader {
     void read() throws IOException;
-    @Nonnull List<String> getLines() throws UnsupportedOperationException;
+
+    @Nonnull
+    List<String> getLines() throws UnsupportedOperationException;
 }
