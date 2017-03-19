@@ -1,15 +1,10 @@
 import java.io.File;
 
-public class TWriterFactory {
-
-    private static TWriter instance;
-
+public final class TWriterFactory {
     public static TWriter getInstance(final File file) {
-        if (instance == null) {
-            if (file == null) instance = new TCommandLineWriter();
-            else instance = new TFileWriter(file);
-            return instance;
-        }
+        TWriter instance;
+        if (file == null) instance = new TCommandLineWriter();
+        else instance = new TFileWriter(file);
         return instance;
     }
 }
