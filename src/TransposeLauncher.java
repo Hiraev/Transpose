@@ -6,6 +6,20 @@ import org.kohsuke.args4j.Option;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ *  Класс, который работает с аргументами командной строки
+ *  и создает нужные классы, в зависимости от аргументов.
+ *  Для парсинга строк класс использует библиотеку args4j.
+ *  Если имеется имя входного файла, то в метод getInstance
+ *  класса TReaderFactory передается File с полученной строкой.
+ *  Иначе вмето File передается null. Аналогично с именем
+ *  выходного файла.
+ *
+ *  @see Transpose
+ *  @see TReaderFactory
+ *  @see TWriterFactory
+ */
+
 public class TransposeLauncher {
     @Option(name = "-a", usage = "Максимальная длина строки", help = true)
     private int length;

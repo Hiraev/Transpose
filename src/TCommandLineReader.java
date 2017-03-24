@@ -3,6 +3,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *  Класс - реализаиция интерфеса TReader.
+ *  Считывает текст с консоли.
+ *  Перед считыванием печатает информационное сообщение.
+ *  Имеет защиту от повторного вызова метода read.
+ *  Поле isRead помогает понять был ли уже считан текст.
+ *
+ *  Строки отделяются друг от друга символом перевода
+ *  строки.
+ *
+ *  При вводе символа переноса строки два раза подряд,
+ *  считывание прекращается.
+ *
+ *  Метод getLines возвращает прочитанные строки.
+ *  Если до этого не было считывания, то метод
+ *  выбросит исключение.
+ *
+ *  @see TReader
+ */
+
 public final class TCommandLineReader implements TReader {
     private List<String> lines;
     private boolean isRead;
@@ -11,7 +31,6 @@ public final class TCommandLineReader implements TReader {
         lines = new ArrayList<>();
     }
 
-    //Считываем строки из консоли. При печати пустой строки прекращаем считывание.
     @Override
     public void read() {
         System.out.println(
