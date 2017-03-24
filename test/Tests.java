@@ -1,13 +1,24 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class Tests {
+    /**
+     *  Метод для проверки содержимого файла
+     * */
+    private void assertFileContent(File file, String expectedContent) throws IOException{
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        String content = bufferedReader.lines().collect(Collectors.joining("\n"));
+        assertEquals(expectedContent, content);
+    }
+
     File input1 = new File("input/input1.txt");
     File input2 = new File("input/input2.txt");
     File input3 = new File("input/input3.txt");
@@ -111,5 +122,52 @@ public class Tests {
     public void checkReadUnsupportedExceptionInTFileReader() {
         TReader reader = TReaderFactory.getInstance(input1);
         reader.getLines();
+    }
+
+    /**
+     *  Проверяем записанные файлы после транспонирования
+     *  +-----------------------------------------------+
+     *  # метода |  input file  | length | trim | right |
+     *  +-----------------------------------------------+
+     *  |   1    | input/input1 |   4    |  no  |  yes  |
+     *  |   2    | input/input2 |   2    |  no  |  no   |
+     *  |   3    | input/input3 |   3    |  yes |  yes  |
+     *  |   4    | input/input4 |   6    |  yes |  no   |
+     *  +-----------------------------------------------+
+     */
+    @Test
+    public void checkOutputFile1() throws Exception {
+        File output = new File("output/outputTest1.txt");
+        String[] transposeText = Transpose.transpose(reader1.getLines(), 4, false, true);
+        TWriter writer = TWriterFactory.getInstance(output);
+        writer.write(transposeText);
+        assertFileContent(output, Texts.textOutput1);
+    }
+
+    @Test
+    public void checkOutputFile2() throws Exception {
+        File output = new File("output/outputTest2.txt");
+        String[] transposeText = Transpose.transpose(reader2.getLines(), 2, false, false);
+        TWriter writer = TWriterFactory.getInstance(output);
+        writer.write(transposeText);
+        assertFileContent(output, Texts.textOutput2);
+    }
+
+    @Test
+    public void checkOutputFile3() throws Exception {
+        File output = new File("output/outputTest3.txt");
+        String[] transposeText = Transpose.transpose(reader3.getLines(), 3, true, true);
+        TWriter writer = TWriterFactory.getInstance(output);
+        writer.write(transposeText);
+        assertFileContent(output, Texts.textOutput3);
+    }
+
+    @Test
+    public void checkOutputFile4() throws Exception {
+        File output = new File("output/outputTest4.txt");
+        String[] transposeText = Transpose.transpose(reader4.getLines(), 6, true, false);
+        TWriter writer = TWriterFactory.getInstance(output);
+        writer.write(transposeText);
+        assertFileContent(output, Texts.textOutput4);
     }
 }

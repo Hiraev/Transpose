@@ -60,4 +60,23 @@ public final class Texts {
             "я     явился.",
             "влачился,"
     };
+
+    final static String textOutput1 = "Духовной    В    И   На\n" +
+            "жаждою пустыне шестикрылый перепутье\n" +
+            "томим, мрачной серафим  мне\n" +
+            "   я явился.\n" +
+            "влачился,";
+
+    final static String textOutput2 = "Четыре\n" +
+            "слова\n" +
+            "и \n" +
+            "одна\n" +
+            "строчка";
+
+    final static String textOutput3 = "Чет сло   и оди сто";
+
+    final static String textOutput4 = "и\u20BD™°~љ &^%$#џ }{*ѓ&њ {*&њ^† }–ў{*&\n" +
+            "ўѕ°њ©† *&^%®$ –}{ѕ*& {*&†^% }{}*&^\n" +
+            "ѓњ†µ^& {{}љ‘ў }{*ѓ&њ\n" +
+            "–}∆{*\u20BD";
 }
