@@ -21,8 +21,8 @@ import java.io.IOException;
  */
 
 public class TransposeLauncher {
-    @Option(name = "-a", usage = "Максимальная длина строки", help = true)
-    private int length;
+    @Option(name = "-a", usage = "Максимальная длина строки")
+    private int length = 10;
 
     @Option(name = "-t", usage = "Обрезать строки, длинее -а")
     private boolean trim;
