@@ -52,6 +52,7 @@ public final class Transpose {
         final String isRight = right ? "" : "-";
 
         lines.stream().map(e -> (Arrays.stream(e.split(" ")))
+                .map(s -> s.replace("\u0009", ""))
                 .filter(s -> !s.isEmpty())
                 .map(s -> (trim & s.length() > length) ? s.substring(0, length) : s)
                 .map(s -> (s.length() < length) ? String.format("%" + isRight + length + "s", s) : s)
