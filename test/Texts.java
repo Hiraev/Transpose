@@ -79,4 +79,13 @@ public final class Texts {
             "ўѕ°њ©† *&^%®$ –}{ѕ*& {*&†^% }{}*&^\n" +
             "ѓњ†µ^& {{}љ‘ў }{*ѓ&њ\n" +
             "–}∆{*\u20BD";
+
+    final static String textOutput5 = "wwejjeqw   qwndkq     qlkwdk     oqwijejqas qkejqlwje  qejioj2e  \n" +
+            "lwmmeklr   jiqewpqoq  qkwnek     kjnqjeknqk kjqkenqk  \n" +
+            "j          llklkwe   \n" +
+            "qebqjkw   ";
+
+    final static String textOutput6 = "£™¢¢¡ ºª•¶¡ ª•¶£• ¡™ºª£ –£¡•¶ –¡º•£\n" +
+            "•ªºª• 9877¶ ˆ¨∫™£ £ª¡•º ™£º•ª £¡ª¶º\n" +
+            "˙∆ˆ¨∫  •£ª1 •£™ºª ª£•¡¶";
 }

@@ -23,11 +23,17 @@ public class Tests {
     File input2 = new File("input/input2.txt");
     File input3 = new File("input/input3.txt");
     File input4 = new File("input/input4.txt");
+    File input5 = new File("input/input5.txt");
+    File input6 = new File("input/input6.txt");
+
     File output1 = new File("output/output1.txt");
+
     TReader reader1 = TReaderFactory.getInstance(input1);
     TReader reader2 = TReaderFactory.getInstance(input2);
     TReader reader3 = TReaderFactory.getInstance(input3);
     TReader reader4 = TReaderFactory.getInstance(input4);
+    TReader reader5 = TReaderFactory.getInstance(input5);
+    TReader reader6 = TReaderFactory.getInstance(input6);
 
     @Before
     public void setUp() throws IOException{
@@ -35,6 +41,8 @@ public class Tests {
         this.reader2.read();
         this.reader3.read();
         this.reader4.read();
+        this.reader5.read();
+        this.reader6.read();
     }
 
     /**
@@ -133,6 +141,8 @@ public class Tests {
      *  |   2    | input/input2 |   2    |  no  |  no   |
      *  |   3    | input/input3 |   3    |  yes |  yes  |
      *  |   4    | input/input4 |   6    |  yes |  no   |
+     *  |   5    | input/input5 |   10   |  yes |  no   |
+     *  |   6    | input/input6 |   5    |  yes |  yes  |
      *  +-----------------------------------------------+
      */
     @Test
@@ -169,5 +179,23 @@ public class Tests {
         TWriter writer = TWriterFactory.getInstance(output);
         writer.write(transposeText);
         assertFileContent(output, Texts.textOutput4);
+    }
+
+    @Test
+    public void checkOutputFile5() throws Exception {
+        File output = new File("output/outputTest5.txt");
+        String[] transposeText = Transpose.transpose(reader5.getLines(), 10, true, false);
+        TWriter writer = TWriterFactory.getInstance(output);
+        writer.write(transposeText);
+        assertFileContent(output, Texts.textOutput5);
+    }
+
+    @Test
+    public void checkOutputFile6() throws Exception {
+        File output = new File("output/outputTest6.txt");
+        String[] transposeText = Transpose.transpose(reader6.getLines(), 5, true, true);
+        TWriter writer = TWriterFactory.getInstance(output);
+        writer.write(transposeText);
+        assertFileContent(output, Texts.textOutput6);
     }
 }
